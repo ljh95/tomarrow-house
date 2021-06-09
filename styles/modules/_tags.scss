@@ -1,0 +1,37 @@
+%tag-base {
+  // 공통 스타일
+  @include inline-flexbox;
+  @include text-style(12);
+  height: 20px;
+  padding: 0 6px;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.tag-red {
+  @extend %tag-base;
+  color: $white;
+  background-color: $red;
+}
+
+.tag-gray {
+  @extend %tag-base;
+  color: $secondary;
+  background-color: $border;
+}
+
+.tag-green {
+  @extend %tag-base;
+  color: $white;
+  background-color: $green;
+}
+/* 
+  플레이스홀더는 인자를 받을 수 없다, 
+  기본적인 쓰임새는 mixin과 비슷하다.
+  확장성이 떨어진다.
+
+  상속받는 식으로 작업
+
+  실제 렌더링 될 때는, mixin처럼 따로따로 때려박지 않고, 
+  자체적으로 grouping을 해준다.
+*/
