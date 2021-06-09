@@ -1,0 +1,42 @@
+// Map = {}, key: value
+$flex-map: (
+  start: flex-start,
+  end: flex-end,
+  between: space-between,
+  around: space-around,
+  center: center,
+  stretch: stretch,
+);
+
+/*
+  function 과 mixin의 차이점
+  1. @includes없이 function을 사용 가능
+
+  2. fuctnio은 값만 반환한다. 하지만, mixin은 코드 자체를 던져버린다.
+*/
+@function _get-flex-value($key) {
+  @return map-get($flex-map, $key);
+}
+
+@mixin flexbox($jc: center, $ai: center) {
+  display: flex;
+  align-items: _get-flex-value($ai);
+  justify-content: _get-flex-value($jc);
+}
+
+.list {
+  @include flexbox(between, end);
+}
+
+@mixin inline-flexbox($jc: center, $ai: center) {
+  display: inline-flex;
+  align-items: _get-flex-value($ai);
+  justify-content: _get-flex-value($jc);
+}
+
+@mixin column-flexbox($jc: center, $ai: center) {
+  display: flex;
+  flex-direction: column;
+  align-items: _get-flex-value($ai);
+  justify-content: _get-flex-value($jc);
+}
